@@ -3,7 +3,7 @@
 # Last Modified: 4/19
 import sys
 
-workHrMax = 40
+WORK_HR_MAX = 40
 try:
     hr = float(input("Enter hours worked this week: "))
 except ValueError:
@@ -20,7 +20,7 @@ if hr > 40:
     overtime = hr - 40
     otPay = round((1.5 * hrPay), 2)
 
-    normalEarn = round((workHrMax * hrPay), 2)
+    normalEarn = round((WORK_HR_MAX * hrPay), 2)
     otEarn = round((overtime * otPay), 2)
     grossPay = normalEarn + otEarn
 else:
