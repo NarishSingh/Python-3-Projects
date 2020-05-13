@@ -26,4 +26,4 @@ if hr > 40:
 else:
     grossPay = round((hr * hrPay), 2)
 
-print("Gross pay = $", grossPay)
+print("Gross pay = $", format(grossPay, ',.2f'))
