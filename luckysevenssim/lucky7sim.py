@@ -16,6 +16,20 @@ def roll_2_dice():
     return random.randint(2, 13)
 
 
+def validate_bet(buy_type, cash_in):
+    """
+    Validate forms of betting by the player such that they are not negative. Customizable prompts for exact bet types
+    :param buy_type: {str} type of bet to be printed in UI prompts
+    :param cash_in: {float} cash amount entered by player
+    :return: validated bet amount
+    """
+    while cash_in < 0:
+        print("Invalid", buy_type)
+        cash_in = round(float(input("Enter " + buy_type + ": $")), 2)
+
+    return cash_in
+
+
 def track_best(bank, round_num):
     """
     Track best earning and round number
@@ -73,9 +87,8 @@ def main():
 
     print("Welcome to Lucky 7's simulator")
     buy_in = round(float(input("Enter buy-in amount: $")), 2)
-    while buy_in < 0:
-        print("Invalid amount")
-        buy_in = round(float(input("Enter buy-in amount: $")), 2)
+    if buy_in < 0:
+        buy_in = validate_bet("buy-in", buy_in)
 
     total_rolls = roll_all(buy_in)
 

@@ -16,6 +16,20 @@ def roll_2_dice():
     return random.randint(2, 13)
 
 
+def validate_bet(buy_type, cash_in):
+    """
+    Validate forms of betting by the player such that they are not negative. Customizable prompts for exact bet types
+    :param buy_type: {str} type of bet to be printed in UI prompts
+    :param cash_in: {float} cash amount entered by player
+    :return: validated bet amount
+    """
+    while cash_in < 0:
+        print("Invalid", buy_type)
+        cash_in = round(float(input("Enter " + buy_type + ": $")), 2)
+
+    return cash_in
+
+
 def evaluate_round(roll, pot, bank):
     """
     Determine win or loss and award double the bet for win, or take bet from pot for loss
@@ -56,10 +70,13 @@ def play_rounds(bank):
 
     while bank > 0 and playing:
         print("Round", round_ct)
-        pot = round(float(input("Place your pot (0 for all-in): ")), 2)
+        pot = round(float(input("Place your bet (0 for all-in): $")), 2)
+        if pot < 0:
+            pot = validate_bet("bet", pot)
+
         while pot > bank:
-            print("Bet cannot be bigger than your pot.")
-            pot = round(float(input("Place your pot: $")), 2)
+            print("Bet cannot be bigger than your bank.")
+            pot = round(float(input("Place your bet: $")), 2)
 
         if pot == 0 or pot == bank:
             pot = bank
@@ -94,9 +111,8 @@ def main():
 
     print("Welcome to Lucky Sevens")
     bank = round(float(input("Enter buy-in: $")), 2)
-    while bank < 0:
-        print("Invalid buy-in")
-        bank = round(float(input("Enter buy-in: $")), 2)
+    if bank < 0:
+        bank = validate_bet("buy-in", bank)
 
     play_rounds(bank)
 
