@@ -55,11 +55,11 @@ def play_rounds(pot):
     round_ct = 1
 
     while pot > 0 and playing:
-        print("Round ", round_ct)
-        bet = float(input("Place your bet (0 for all-in): "))
+        print("Round", round_ct)
+        bet = round(float(input("Place your bet (0 for all-in): ")), 2)
         while bet > pot:
             print("Bet cannot be bigger than your pot.")
-            bet = float(input("Place your bet: "))
+            bet = round(float(input("Place your bet: $")), 2)
 
         if bet == 0 or bet == pot:
             bet = pot
@@ -93,10 +93,10 @@ def main():
     best_earning = 0
 
     print("Welcome to Lucky Sevens")
-    pot = float(input("Place starting bet: "))
+    pot = round(float(input("Enter buy-in: $")), 2)
     while pot < 0:
-        print("Invalid buy-in amount")
-        pot = float(input("Place starting bet: "))
+        print("Invalid buy-in")
+        pot = round(float(input("Enter buy-in: $")), 2)
 
     play_rounds(pot)
 
