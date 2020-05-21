@@ -30,18 +30,21 @@ def validate_bet(buy_type, cash_in):
     return cash_in
 
 
-def track_best(bank, round_num):
+def track_best(round_ct, bank):
     """
-    Track best earning and round number
+    Track which round player earned the highest amount
+    :param round_ct: {int} round number
     :param bank: {float} current earning
-    :param round_num: {int} current round
+    :returns: {float} highest earning so far
+    :returns: {int} round of best earning so far
     """
-    global best_earning
-    global best_round
+    global best_earning, best_round
 
     if bank > best_earning:
         best_earning = bank
-        best_round = round_num
+        best_round = round_ct
+
+    return best_earning, best_round
 
 
 def evaluate_roll(roll, pot):
@@ -65,6 +68,7 @@ def roll_all(bank):
     :param bank: {float} sim's cash
     :return: {int} the number of rolls it took before sim went broke
     """
+    global best_earning, best_round
     round_ct = 0
 
     while bank > 0:
@@ -74,7 +78,7 @@ def roll_all(bank):
 
         # print("Round ", round_ct, " | Rolled ", round_roll, " | Pot: $", format(pot, ',.2f'), sep='') # debug
 
-        track_best(bank, round_ct)
+        best_earning, best_round = track_best(bank, round_ct)
 
     return round_ct
 

@@ -51,13 +51,16 @@ def track_best(round_ct, bank):
     Track which round player earned the highest amount
     :param round_ct: {int} round number
     :param bank: {float} current earning
+    :returns: {float} highest earning so far
+    :returns: {int} round of best earning so far
     """
-    global best_earning
-    global best_round
+    global best_earning, best_round
 
     if bank > best_earning:
         best_earning = bank
         best_round = round_ct
+
+    return best_earning, best_round
 
 
 def play_rounds(bank):
@@ -67,6 +70,7 @@ def play_rounds(bank):
     """
     playing = True
     round_ct = 1
+    global best_round, best_earning
 
     while bank > 0 and playing:
         print("Round", round_ct)
@@ -88,7 +92,7 @@ def play_rounds(bank):
         bank = evaluate_round(round_roll, pot, bank)
         print("Pot: $", format(bank, ',.2f'), sep='')
 
-        track_best(round_ct, bank)
+        best_earning, best_round = track_best(round_ct, bank)
         round_ct += 1
 
         if bank > 0:
@@ -104,10 +108,7 @@ def play_rounds(bank):
 
 
 def main():
-    global best_round
-    best_round = 0
-    global best_earning
-    best_earning = 0
+    global best_round, best_earning
 
     print("Welcome to Lucky Sevens")
     bank = round(float(input("Enter buy-in: $")), 2)
