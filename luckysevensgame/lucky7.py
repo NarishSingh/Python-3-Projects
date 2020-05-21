@@ -10,7 +10,7 @@ best_round = 0
 
 def roll_2_dice():
     """
-    roll a two 6-sided dice
+    roll two 6-sided dice
     :return: {int} 2-12
     """
     return random.randint(2, 13)
