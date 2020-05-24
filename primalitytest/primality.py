@@ -1,6 +1,6 @@
 # Primality Test
 # Date Created: 5/22/20
-# Last Modified: 5/23/20
+# Last Modified: 5/24/20
 
 import math
 
@@ -25,9 +25,9 @@ def prime_list(num):
     """
     for i in range(2, num + 1):
         if is_prime(i):
-            print(i, end=', ')
+            print(i, end=' ')
 
-    print()
+    print("\n")
 
 
 def main():
@@ -55,9 +55,10 @@ def main():
         while listing:
             test_to = int(input("Enter a integer (0 or 1 to exit): "))
 
-            if test_to == 0 or test_to == 1 or test_to < 0:
-                print("No primes in range")
+            if test_to == 0 or test_to == 1:
                 listing = False
+            elif test_to < 0:
+                print("No primes in range")
             else:
                 print(prime_list(test_to))
     else:
