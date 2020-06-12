@@ -1,6 +1,7 @@
 # Item File IO
 # Date Created: 6/11/20
 # Last Modified: 6/11/20
+import sys
 
 INVENTORY_FILE = "items.txt"
 
@@ -9,7 +10,11 @@ def add_items():
     """
     Add items to inventory file
     """
-    write_to_file = open(INVENTORY_FILE, "a")
+    try:
+        write_to_file = open(INVENTORY_FILE, "a")
+    except IOError:
+        print("Could not find inventory file")
+        sys.exit()
 
     print("Please enter the following information:")
     item_name = input("Name: ")
@@ -29,7 +34,12 @@ def read_items():
     Read in items from inventory file, print their data to console, and display total number of items
     """
     item_count = 0
-    read_file = open(INVENTORY_FILE, "r")
+
+    try:
+        read_file = open(INVENTORY_FILE, "a")
+    except IOError:
+        print("Could not find inventory file")
+        sys.exit()
 
     item_name = read_file.readline().rstrip()
 
