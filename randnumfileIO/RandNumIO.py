@@ -6,7 +6,7 @@ import random
 import sys
 
 NUMBER_FILE = "nums.txt"
-DELIMITER = "  "
+DELIMITER = " "
 
 
 def write_nums(num_limit, rand_min, rand_max):
@@ -22,11 +22,8 @@ def write_nums(num_limit, rand_min, rand_max):
         print("Could not open number file")
         sys.exit()
 
-    for i in range(0, (num_limit + 1) // 10):
-        for j in range(0, 10):
-            nums.write(str(random.randint(rand_min, rand_max)) + DELIMITER)
-
-        nums.write("\n")
+    for i in range(0, (num_limit + 1)):
+        nums.write(str(random.randint(rand_min, rand_max)) + DELIMITER)
 
     nums.close()
 
@@ -45,11 +42,14 @@ def average_of_file(num_limit):
 
     num_total = 0
 
-    for i in range(0, (num_limit + 1) // 10):
-        for j in range(0, 10):
-            num_total += int(rands.read().rstrip(DELIMITER).rstrip("\n"))
+    num_list = rands.readline().rstrip(DELIMITER).split(DELIMITER)
 
     rands.close()
+
+    # print(num_list)  # debug
+
+    for n in num_list:
+        num_total += int(n)
 
     return num_total / num_limit
 
@@ -68,8 +68,8 @@ def main():
 
     write_nums(rn_limit, lower_bound, upper_bound)
 
-    # avg = average_of_file(rn_limit)
-    # print("The average from file is " + format(avg, '.2f'))
+    avg = average_of_file(rn_limit)
+    print("The average from file is " + format(avg, '.2f'))
 
 
 main()
