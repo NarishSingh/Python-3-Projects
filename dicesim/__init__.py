@@ -7,8 +7,9 @@ MAX = 6
 def roll(numDice: int) -> int:
     """
     Roll any number of dice once
+
     :param numDice: {int} number of dice to roll
-    :return: roll result
+    :return: {int} roll result
     """
     return rand.randint(MIN * numDice, MAX * numDice)
 
