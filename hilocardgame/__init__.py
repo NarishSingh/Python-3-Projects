@@ -4,6 +4,7 @@ import random as r
 def build_deck() -> list:
     """
     Create deck
+
     :return: {list} a deck of card objects
     """
     suits = ['spades', 'hearts', 'diamonds', 'clubs']
@@ -39,6 +40,7 @@ def build_deck() -> list:
 def compare(card1: dict, card2: dict) -> int:
     """
     Compare two cards
+
     :param card1: {dict} current card
     :param card2: {dict} next card
     :return: {int} the difference in values
@@ -49,6 +51,7 @@ def compare(card1: dict, card2: dict) -> int:
 def guess(card1: dict, card2: dict) -> bool:
     """
     Have player make a guess and evaluate
+
     :param card1: {dict} current card
     :param card2: {dict} next card
     :return: {bool} true is guess right, false if not
@@ -67,6 +70,7 @@ def guess(card1: dict, card2: dict) -> bool:
 def play_game() -> None:
     """
     Main game loop
+
     :return: void
     """
     deck = build_deck()
